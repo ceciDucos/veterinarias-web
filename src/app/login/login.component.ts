@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MessageService } from '../message-handler/message.service';
 import { VeterinariaService } from '../services/veterinaria.service';
 import { passwordValidator } from './password-match.validator';
 
@@ -29,8 +30,10 @@ export class LoginComponent implements OnInit {
     ]
   });
 
-  constructor(private veterinariaService: VeterinariaService,
-    private formBuilder: FormBuilder) {
+  constructor(
+    private veterinariaService: VeterinariaService,
+    private formBuilder: FormBuilder,
+    private messageService: MessageService) {
     // redirect to home if already logged in
     // if (this.authenticationService.currentUserValue) {
     //   this.router.navigate(['/landing']);
@@ -60,9 +63,15 @@ export class LoginComponent implements OnInit {
   submit() {
     const name = this.currentStep === 'login' ? 'login' : 'register';
     this[`${name}Submitted`] = true;
+
     if (this[`${name}Form`].invalid) {
       return;
     }
-    console.log(this[`${name}Form`].value);
+
+    try {
+      console.log(this[`${name}Form`].value);
+    } catch (error) {
+      this.messageService.showError(error);
+    }
   }
 }
