@@ -1,0 +1,44 @@
+@import 'variables';
+
+:host::ng-deep {
+  .mat-paginator-page-size {
+    align-items: center !important;
+  }
+
+  .mat-header-cell {
+    // padding-right: 4rem;
+    vertical-align: middle;
+    font-size: 1.7em;
+    padding-left: 1rem;
+    border-color: $primary-color;
+
+    &:first-of-type {
+      padding: 1rem !important;
+    }
+  }
+
+  .mat-cell {
+    padding: 1rem !important;
+    text-align: left !important;
+    vertical-align: middle;
+    font-size: 1.3em;
+    border-color: $primary-color;
+    background-color: $light-orange;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: separate !important;
+}
+
+section {
+  height: 44rem;
+  padding: 4rem;
+
+  h1 {
+    font-size: 3em;
+    margin: 3rem 0.5rem;
+    color: $primary-color;
+  }
+}
