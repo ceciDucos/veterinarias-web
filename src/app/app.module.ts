@@ -9,13 +9,16 @@ import { ErrorComponent } from './error-page/error-page.component';
 import { LandingModule } from './landing/landing.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MessageHandlerComponent } from './message-handler/message-handler.component';
+import { MessageService } from './message-handler/message.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ErrorComponent
+    ErrorComponent,
+    MessageHandlerComponent
   ],
   imports: [
     BrowserModule,
@@ -24,9 +27,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     LandingModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
