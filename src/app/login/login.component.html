@@ -1,69 +1,40 @@
 <div class="container">
   <div class="form-section" [class.register]="currentStep === 'register'">
-    <!-- login form -->
-    <form [formGroup]="loginForm" *ngIf="currentStep === 'login'">
-      <h1>Iniciar sesión</h1>
+    <ng-container *ngIf="currentStep === 'login'; else register">
+      <!-- login form -->
+      <form [formGroup]="loginForm">
+        <h1>Iniciar sesión</h1>
 
-      <div class="form-row">
-        <label>Usuario</label>
-        <input placeholder="Ingresar usuario" formControlName="name"
-          [class.invalid-input]="loginForm.get('name').errors?.required && loginSubmitted">
-        <p [class.hide]="!(loginForm.get('name').errors?.required && loginSubmitted)" class="error-msg">
-          El usuario no puede ser vacío
-        </p>
-      </div>
+        <div class="form-row">
+          <label>Usuario</label>
+          <input placeholder="Ingresar usuario" formControlName="name"
+            [class.invalid-input]="loginForm.get('name').errors?.required && loginSubmitted">
+          <p [class.hide]="!(loginForm.get('name').errors?.required && loginSubmitted)" class="error-msg">
+            El usuario no puede ser vacío
+          </p>
+        </div>
 
-      <div class="form-row">
-        <label>Contraseña</label>
-        <input type="password" placeholder="Ingresar contraseña" formControlName="password"
-          [class.invalid-input]="loginForm.get('password').errors?.required && loginSubmitted">
-        <p [class.hide]="!(loginForm.get('password').errors?.required && loginSubmitted)" class="error-msg">
-          La contraseña no puede ser vacía
-        </p>
-      </div>
-    </form>
+        <div class="form-row">
+          <label>Contraseña</label>
+          <input type="password" placeholder="Ingresar contraseña" formControlName="password"
+            [class.invalid-input]="loginForm.get('password').errors?.required && loginSubmitted">
+          <p [class.hide]="!(loginForm.get('password').errors?.required && loginSubmitted)" class="error-msg">
+            La contraseña no puede ser vacía
+          </p>
+        </div>
+      </form>
+    </ng-container>
 
     <!-- register form -->
-    <form *ngIf="currentStep !== 'login'" [formGroup]="registerForm">
-      <h1>Registrarse</h1>
+    <ng-template #register>
+      <app-user-form (changeStepEmit)="changeStep()" (registerEvent)="registerUser($event)"></app-user-form>
+    </ng-template>
 
-      <div class="form-row">
-        <label>Usuario</label>
-        <input placeholder="Ingresar usuario" formControlName="userName"
-          [class.invalid-input]="registerForm.get('userName').errors?.required && registerSubmitted">
-        <p [class.hide]="!(registerForm.get('userName').errors?.required && registerSubmitted)" class="error-msg">
-          El usuario no puede ser vacío
-        </p>
-      </div>
-
-      <div class="form-row">
-        <label>Contraseña</label>
-        <input type="password" placeholder="Ingresar contraseña" formControlName="userPassword"
-          [class.invalid-input]="registerForm.get('userPassword').errors?.required && registerSubmitted">
-        <p [class.hide]="!(registerForm.get('userPassword').errors?.required && registerSubmitted)" class="error-msg">
-          La contraseña no puede ser vacía
-        </p>
-      </div>
-
-      <div class="form-row">
-        <label>Confirmar ontraseña</label>
-        <input type="password" placeholder="Ingresar contraseña" formControlName="userConfirmPassword"
-          [class.invalid-input]="(registerForm.controls['userConfirmPassword']?.errors?.required ||
-            registerForm.errors?.fieldsDontMatch) && registerSubmitted">
-        <p [class.hide]="!(registerForm.controls['userConfirmPassword']?.errors?.required && registerSubmitted)"
-          class="error-msg">
-          Las contraseña no puede ser vacía
-        </p>
-        <p [class.hide]="!(registerForm.errors?.fieldsDontMatch &&
-        !registerForm.controls['userConfirmPassword']?.errors?.required && registerSubmitted)" class="error-msg">
-          Las contraseñas no coinciden
-        </p>
-      </div>
-    </form>
-
-    <button class="btn-submit" (click)="submit()" [disabled]="isDisabled()">Continuar</button>
-    <button class="btn-register" (click)="changeStep()">
-      {{currentStep === 'login' ? 'Regitrarme' : 'Cancelar'}}
-    </button>
+    <div class="actions" *ngIf="currentStep === 'login'">
+      <button class="btn-submit" (click)="submit()" [disabled]="isDisabled()">Continuar</button>
+      <button class="btn-register" (click)="changeStep()">
+        Regitrarme
+      </button>
+    </div>
   </div>
 </div>

@@ -14,20 +14,9 @@ export class LoginComponent implements OnInit {
   public currentStep = 'login';
   public loading = false;
   public loginSubmitted = false;
-  public registerSubmitted = false;
   public loginForm = this.formBuilder.group({
     name: ['', Validators.required],
     password: ['', Validators.required],
-  });
-
-  public registerForm = this.formBuilder.group({
-    userName: ['', Validators.required],
-    userPassword: ['', Validators.required],
-    userConfirmPassword: ['', Validators.required],
-  }, {
-    validators: [
-      passwordValidator('userPassword', 'userConfirmPassword')
-    ]
   });
 
   constructor(
@@ -41,14 +30,14 @@ export class LoginComponent implements OnInit {
   }
 
   async ngOnInit() {
-    // try {
-    //   const response = await this.veterinariaService.getVeterinarias();
-    //   console.log(response);
-    //   const veterinaria = await this.veterinariaService.getVeterinaria(1);
-    //   console.log(veterinaria);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      const response = await this.veterinariaService.getVeterinarias();
+      console.log(response);
+      // const veterinaria = await this.veterinariaService.getVeterinaria(1);
+      // console.log(veterinaria);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   changeStep() {
@@ -62,7 +51,7 @@ export class LoginComponent implements OnInit {
 
   submit() {
     const name = this.currentStep === 'login' ? 'login' : 'register';
-    this[`${name}Submitted`] = true;
+    this.loginSubmitted = true;
 
     if (this[`${name}Form`].invalid) {
       return;
@@ -73,5 +62,10 @@ export class LoginComponent implements OnInit {
     } catch (error) {
       this.messageService.showError(error);
     }
+  }
+
+  registerUser(event) {
+    console.log('lo que viene del register');
+    console.log(event);
   }
 }

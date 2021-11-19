@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageHandlerComponent } from './message-handler/message-handler.component';
 import { MessageService } from './message-handler/message.service';
+import { UserFormComponent } from './login/user-form.component.ts/user-form.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MessageService } from './message-handler/message.service';
     AppComponent,
     LoginComponent,
     ErrorComponent,
-    MessageHandlerComponent
+    MessageHandlerComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
