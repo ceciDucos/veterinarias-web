@@ -69,4 +69,9 @@ export class LoginComponent implements OnInit {
     }
 
   }
+
+  registerUser(event) {
+    console.log('lo que viene del register');
+    console.log(event);
+  }
 }
