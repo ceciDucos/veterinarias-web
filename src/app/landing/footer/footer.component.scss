@@ -3,4 +3,25 @@
 .container {
   height: 30rem;
   background-color: $light-black-color;
+  padding: 5rem;
+  color: $white-color;
+
+  h1 {
+    font-size: 3em;
+    margin-bottom: 2rem;
+  }
+
+  .data {
+    font-size: 1.6em;
+  }
+
+  .rights {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    height: 20rem;
+    font-size: 1.2em;
+    color: $grey-color;
+  }
 }
