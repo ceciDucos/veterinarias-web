@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageHandlerComponent } from './message-handler/message-handler.component';
 import { MessageService } from './message-handler/message.service';
 import { UserFormComponent } from './login/user-form.component.ts/user-form.component';
+import { ClientService } from './services/client.service';
+import { AppointmentService } from './services/appointment.service';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { UserFormComponent } from './login/user-form.component.ts/user-form.comp
     ReactiveFormsModule
   ],
   providers: [
-    MessageService
+    MessageService,
+    ClientService,
+    AppointmentService
   ],
   bootstrap: [AppComponent]
 })

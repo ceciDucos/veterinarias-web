@@ -74,7 +74,7 @@ form {
 .btn-submit {
   padding: 1.3rem;
   font-size: 1.7em;
-  background: $primary-color;
+  background-color: $primary-color;
   border-radius: 3rem;
   color: $white-color;
   min-width: 14rem;
@@ -85,7 +85,7 @@ form {
 }
 
 .btn-register {
-  background: $white-color;;
+  background: $white-color;
   font-size: 1.3em;
   margin: 2rem 1rem;
   color: $grey-color;
@@ -101,5 +101,15 @@ form {
   &.register {
     display: flex;
     justify-content: flex-end;
+  }
+}
+
+select {
+  border-bottom: 0.1rem solid $primary-color;
+  height: 3rem;
+  font-size: 1.4em;
+
+  option.placholder-opt {
+    color: grey;
   }
 }
