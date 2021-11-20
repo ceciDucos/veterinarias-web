@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { AppointmentService } from 'src/app/services/appointment.service';
 
 @Component({
   selector: 'app-appointments-page',
@@ -17,7 +18,7 @@ export class AppointmentsPageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(private appointmentService: AppointmentService) {
     this.sourceData.data = [
       { nombreMascota: 'Lali', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 4 },
       { nombreMascota: 'Luna', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 4 },
@@ -25,7 +26,9 @@ export class AppointmentsPageComponent implements OnInit {
     ]
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const appointments = await this.appointmentService.getAppointments();
+    console.log(appointments);
     this.sourceData.paginator = this.paginator;
     this.sourceData.sort = this.sort;
   }

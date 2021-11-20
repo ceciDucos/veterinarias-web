@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from '../message-handler/message.service';
+import { ClientService } from '../services/client.service';
 import { VeterinariaService } from '../services/veterinaria.service';
-import { passwordValidator } from './password-match.validator';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private veterinariaService: VeterinariaService,
+    private clientService: ClientService,
     private formBuilder: FormBuilder,
     private messageService: MessageService) {
     // redirect to home if already logged in
@@ -56,16 +57,16 @@ export class LoginComponent implements OnInit {
     if (this[`${name}Form`].invalid) {
       return;
     }
+  }
 
+  async registerUser(event) {
+    console.log('lo que viene del register');
+    console.log(event);
     try {
-      console.log(this[`${name}Form`].value);
+      await this.clientService.addUser(event);
     } catch (error) {
       this.messageService.showError(error);
     }
-  }
 
-  registerUser(event) {
-    console.log('lo que viene del register');
-    console.log(event);
   }
 }

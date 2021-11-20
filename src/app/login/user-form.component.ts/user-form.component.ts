@@ -48,7 +48,16 @@ export class UserFormComponent implements OnInit {
   submit() {
     this.submitted = true;
     console.log(this.registerForm.value);
-    this.registerEvent.emit(this.registerForm.value);
+    const clientRequest = {
+      nombre: this.registerForm.get('userName').value,
+      cedula: this.registerForm.get('cedula').value,
+      telefono: this.registerForm.get('telefono').value,
+      idVeterinaria: this.registerForm.get('veterinaria').value,
+      direccion: this.registerForm.get('direccion').value,
+      correo: this.registerForm.get('correo').value,
+      pass: this.registerForm.get('userPassword').value,
+    }
+    this.registerEvent.emit(clientRequest);
   }
 
   cancel() {

@@ -33,12 +33,11 @@
 
     <div class="form-row">
       <label>Veterinaria</label>
-      <select class="action-select-box" formControlName="veterinaria">
+      <select [class.invalid-input]="registerForm.get('veterinaria').errors?.required && submitted"
+        formControlName="veterinaria">
+        <option class="placholder-opt" value="" disabled selected>Seleccione una veterinaria...</option>
         <option *ngFor="let veterinaria of veterinarias" [value]="veterinaria.Id">{{veterinaria.Nombre}}</option>
       </select>
-
-      <input placeholder="Ingresar veterinaria" formControlName="veterinaria"
-        [class.invalid-input]="registerForm.get('veterinaria').errors?.required && submitted">
       <p [class.hide]="!(registerForm.get('veterinaria').errors?.required && submitted)" class="error-msg">
         La veterinaria no puede ser vacía
       </p>
