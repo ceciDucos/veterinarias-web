@@ -18,7 +18,6 @@ export class AppointmentsPageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-
   constructor(private appointmentService: AppointmentService) {
     this.sourceData.data = [
       { nombreMascota: 'Lali', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 4 },
@@ -26,7 +25,6 @@ export class AppointmentsPageComponent implements OnInit {
       { nombreMascota: 'Sultan', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 4 }
     ]
   }
-
 
   async ngOnInit() {
     const appointments = await this.appointmentService.getAppointments();
