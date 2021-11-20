@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { VeterinariaService } from 'src/app/services/veterinaria.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class FooterComponent implements OnInit {
-  constructor() { }
 
-  ngOnInit() { }
+  public veterinarias = [];
+
+  constructor(private veterinariaService: VeterinariaService) 
+  { 
+    
+  }
+
+  async ngOnInit() {
+    try 
+    {
+      this.veterinarias = await this.veterinariaService.getVeterinarias();
+    } 
+    catch (error) 
+    {
+      
+    }
+  }
 }
