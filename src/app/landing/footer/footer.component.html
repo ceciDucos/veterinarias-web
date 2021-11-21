@@ -1,6 +1,16 @@
 <div class="container">
   <div class="formControlNameoter-column">
-    <div class="first-column">  
+
+
+    
+    <div class="first-column">
+      <h1><a class="data">Nuestras sucursales:</a></h1>
+      <div class="list">
+        <p *ngFor="let veterinaria of veterinarias"> ✦ {{veterinaria.Nombre}} - {{veterinaria.Direccion}}</p>
+      </div>
+    </div>
+
+    <div class="second-column">  
       <div class="row">
         <h1><a class="data">Contáctate con nosotros!</a></h1>
       </div>
@@ -14,17 +24,9 @@
       </div>
     </div>
 
-    
-    <div class="second-column">
-      <h1><a class="data">Nuestras sucursales:</a></h1>
-      <div class="list">
-        <p *ngFor="let veterinaria of veterinarias"> ✦ {{veterinaria.Nombre}} - {{veterinaria.Direccion}}</p>
-      </div>
-    </div>
-
     <div class="third-column">
       <div class="row">
-        <h1><a class="data">Redes sociales:</a></h1>
+        <h1><a class="data">¡Seguinos!</a></h1>
       </div>
       <div class="social-line">
         <a target="_blank">
@@ -41,6 +43,15 @@
         <a target="_blank">
           <img src="../../../assets/img/linkedin.png"linkedinUrl alt="" matTooltip="LinkedIn" matTooltipPosition="above">
         </a>
+      </div>
+    </div>
+
+    <div class="fourth-column">
+      <h1><a class="data">Consultas</a></h1>
+      <div class="consult-list">
+        <a class="data">Politicas de privacidad</a>
+        <a class="data">Trabaja con nosotros</a>
+        <a class="data">Partners</a>   
       </div>
     </div>
   </div>
