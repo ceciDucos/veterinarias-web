@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ErrorComponent } from './error-page/error-page.component';
+import { AppointmentsPageComponent } from './landing/appointments-page/appointments-page.component';
 import { HomePageComponent } from './landing/home-page/home-page.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home-page', pathMatch: 'full' },
       { path: 'home-page', component: HomePageComponent, pathMatch: 'full' },
+      { path: 'appointments-page', component: AppointmentsPageComponent, pathMatch: 'full' },
       //{ path: 'clients-detail', component: ClientDetailsComponent, pathMatch: 'full' },
     ],
   },

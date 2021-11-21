@@ -1,0 +1,98 @@
+<form [formGroup]="registerForm">
+  <h1>Registrarse</h1>
+
+  <div class="row">
+    <div class="form-row">
+      <label>Nombre</label>
+      <input placeholder="Ingresar usuario" formControlName="userName"
+        [class.invalid-input]="registerForm.get('userName').errors?.required && submitted">
+      <p [class.hide]="!(registerForm.get('userName').errors?.required && submitted)" class="error-msg">
+        El usuario no puede ser vacío
+      </p>
+    </div>
+
+    <div class="form-row">
+      <label>Cédula</label>
+      <input placeholder="Ingresar cédula" formControlName="cedula"
+        [class.invalid-input]="registerForm.get('cedula').errors?.required && submitted">
+      <p [class.hide]="!(registerForm.get('cedula').errors?.required && submitted)" class="error-msg">
+        La cedula no puede ser vacía
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-row">
+      <label>Teléfono</label>
+      <input placeholder="Ingresar télefono" formControlName="telefono"
+        [class.invalid-input]="registerForm.get('telefono').errors?.required && submitted">
+      <p [class.hide]="!(registerForm.get('telefono').errors?.required && submitted)" class="error-msg">
+        El telefono no puede ser vacío
+      </p>
+    </div>
+
+    <div class="form-row">
+      <label>Veterinaria</label>
+      <select [class.invalid-input]="registerForm.get('veterinaria').errors?.required && submitted"
+        formControlName="veterinaria">
+        <option class="placholder-opt" value="" disabled selected>Seleccione una veterinaria...</option>
+        <option *ngFor="let veterinaria of veterinarias" [value]="veterinaria.Id">{{veterinaria.Nombre}}</option>
+      </select>
+      <p [class.hide]="!(registerForm.get('veterinaria').errors?.required && submitted)" class="error-msg">
+        La veterinaria no puede ser vacía
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-row">
+      <label>Dirección</label>
+      <input placeholder="Ingresar dirección" formControlName="direccion"
+        [class.invalid-input]="registerForm.get('direccion').errors?.required && submitted">
+      <p [class.hide]="!(registerForm.get('direccion').errors?.required && submitted)" class="error-msg">
+        La dirección no puede ser vacía
+      </p>
+    </div>
+
+    <div class="form-row">
+      <label>Correo</label>
+      <input placeholder="Ingresar correo" formControlName="correo"
+        [class.invalid-input]="registerForm.get('correo').errors?.required && submitted">
+      <p [class.hide]="!(registerForm.get('correo').errors?.required && submitted)" class="error-msg">
+        El correo no puede ser vacío
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-row">
+      <label>Contraseña</label>
+      <input type="password" placeholder="Ingresar contraseña" formControlName="userPassword"
+        [class.invalid-input]="registerForm.get('userPassword').errors?.required && submitted">
+      <p [class.hide]="!(registerForm.get('userPassword').errors?.required && submitted)" class="error-msg">
+        La contraseña no puede ser vacía
+      </p>
+    </div>
+
+    <div class="form-row">
+      <label>Confirmar contraseña</label>
+      <input type="password" placeholder="Ingresar contraseña" formControlName="userConfirmPassword"
+        [class.invalid-input]="(registerForm.controls['userConfirmPassword']?.errors?.required ||
+        registerForm.errors?.fieldsDontMatch) && submitted">
+      <p [class.hide]="!(registerForm.controls['userConfirmPassword']?.errors?.required && submitted)"
+        class="error-msg">
+        Las contraseña no puede ser vacía
+      </p>
+      <p [class.hide]="!(registerForm.errors?.fieldsDontMatch &&
+    !registerForm.controls['userConfirmPassword']?.errors?.required && submitted)" class="error-msg">
+        Las contraseñas no coinciden
+      </p>
+    </div>
+  </div>
+</form>
+<div class="actions register">
+  <button class="btn-register" (click)="cancel()">
+    Cancelar
+  </button>
+  <button class="btn-submit" (click)="submit()" [disabled]="registerForm.invalid && submitted">Continuar</button>
+</div>

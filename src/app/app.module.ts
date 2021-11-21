@@ -11,6 +11,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageHandlerComponent } from './message-handler/message-handler.component';
 import { MessageService } from './message-handler/message.service';
+import { UserFormComponent } from './login/user-form.component.ts/user-form.component';
+import { ClientService } from './services/client.service';
+import { AppointmentService } from './services/appointment.service';
 
 
 @NgModule({
@@ -18,7 +21,8 @@ import { MessageService } from './message-handler/message.service';
     AppComponent,
     LoginComponent,
     ErrorComponent,
-    MessageHandlerComponent
+    MessageHandlerComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,9 @@ import { MessageService } from './message-handler/message.service';
     ReactiveFormsModule
   ],
   providers: [
-    MessageService
+    MessageService,
+    ClientService,
+    AppointmentService
   ],
   bootstrap: [AppComponent]
 })

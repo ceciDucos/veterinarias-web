@@ -1,0 +1,40 @@
+<section>
+  <h1>Consultas</h1>
+
+  <table mat-table [dataSource]="sourceData" matSort>
+
+    <ng-container matColumnDef="nombreMascota">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Mascota</th>
+      <td mat-cell *matCellDef="let consulta">
+        {{consulta.nombreMascota}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+      <td mat-cell *matCellDef="let consulta">
+        {{consulta.fecha}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</th>
+      <td mat-cell *matCellDef="let consulta">
+        {{consulta.descripcion}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="calificacion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Calificación</th>
+      <td mat-cell *matCellDef="let consulta">
+        {{consulta.calificacion}}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+  </table>
+  <!-- <mat-paginator class="page-number" [length]="100" [pageSize]="10" [pageSizeOptions]="pageSizeOptions"
+    (page)="pageEvent = $event">
+  </mat-paginator> -->
+</section>

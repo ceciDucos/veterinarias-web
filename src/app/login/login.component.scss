@@ -18,7 +18,8 @@
   background-color: $white-color;
 
   &.register {
-    height: 47rem;
+    height: 55rem;
+    width: 54rem;
   }
 }
 
@@ -36,6 +37,7 @@ form {
     margin-bottom: 3rem;
     display: flex;
     flex-direction: column;
+    min-width: 24rem;
 
     label {
       margin-bottom: 1rem;
@@ -63,12 +65,19 @@ form {
   }
 }
 
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .btn-submit {
   padding: 1.3rem;
   font-size: 1.7em;
-  background: $primary-color;
+  background-color: $primary-color;
   border-radius: 3rem;
   color: $white-color;
+  min-width: 14rem;
 
   &:disabled {
     opacity: 0.4;
@@ -76,12 +85,31 @@ form {
 }
 
 .btn-register {
-  background: $white-color;;
-  font-size: 1.2em;
-  margin-top: 2rem;
+  background: $white-color;
+  font-size: 1.3em;
+  margin: 2rem 1rem;
   color: $grey-color;
 }
 
 .hide {
   visibility: hidden;
+}
+
+.actions {
+  display: contents;
+
+  &.register {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+select {
+  border-bottom: 0.1rem solid $primary-color;
+  height: 3rem;
+  font-size: 1.4em;
+
+  option.placholder-opt {
+    color: grey;
+  }
 }
