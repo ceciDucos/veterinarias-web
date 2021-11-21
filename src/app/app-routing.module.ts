@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ErrorComponent } from './error-page/error-page.component';
+import { AuthGuard } from './helpers/auth.guard';
 import { AppointmentsPageComponent } from './landing/appointments-page/appointments-page.component';
 import { HomePageComponent } from './landing/home-page/home-page.component';
 import { LandingComponent } from './landing/landing.component';
@@ -11,7 +12,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
-    path: 'landing', component: LandingComponent,
+    path: 'landing', canActivate: [AuthGuard], component: LandingComponent,
     children: [
       { path: '', redirectTo: 'home-page', pathMatch: 'full' },
       { path: 'home-page', component: HomePageComponent, pathMatch: 'full' },
