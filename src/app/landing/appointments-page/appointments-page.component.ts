@@ -27,8 +27,8 @@ export class AppointmentsPageComponent implements OnInit {
   }
 
   async ngOnInit() {
-    const appointments = await this.appointmentService.getAppointments();
-    console.log(appointments);
+    //const appointments = await this.appointmentService.getAppointments();
+    //console.log(appointments);
     this.sourceData.paginator = this.paginator;
     this.sourceData.sort = this.sort;
   }

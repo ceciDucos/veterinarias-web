@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { UserEditModalComponent } from './modals/edit-user-modal/edit-user-modal.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -31,10 +32,14 @@ import { UserEditModalComponent } from './modals/edit-user-modal/edit-user-modal
     MatSortModule,
     CommonModule,
     BrowserAnimationsModule,
+    MatDialogModule,
   ],
   exports: [
-    LandingComponent
+    LandingComponent,
   ],
+  //entryComponents: [
+  //  UserEditModalComponent,
+  //],
   providers: [
     DatePipe
   ],

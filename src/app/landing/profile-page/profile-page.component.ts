@@ -12,7 +12,6 @@ import { UserEditModalComponent } from '../modals/edit-user-modal/edit-user-moda
     styleUrls: ['./profile-page.component.scss']
   })
   
-
 export class ProfilePageComponent {
     public tableColumns = ['nombreMascota', 'razaMascota', 'edadMascota', 'vacunasMascota'];
     public sourceData = new MatTableDataSource<any>();
@@ -22,7 +21,7 @@ export class ProfilePageComponent {
     @ViewChild(MatSort) sort: MatSort;
 
     constructor(
-      //public dialog: MatDialog,
+      public dialog: MatDialog,
       private formBuilder: FormBuilder,
       ) {
       this.sourceData.data = [
@@ -33,15 +32,23 @@ export class ProfilePageComponent {
     }
   
     async ngOnInit() {
-      this.sourceData.paginator = this.paginator;
-      this.sourceData.sort = this.sort;
+      //this.sourceData.paginator = this.paginator;
+      //this.sourceData.sort = this.sort;
     }
-/*
+
     openModalEdit() {
-      const dialogRef = this.dialog.open(UserEditModalComponent);
-      dialogRef.afterClosed().subscribe(result => {
-        //
-      });
-    }*/
+      try{
+        const dialogRef = this.dialog.open(UserEditModalComponent, {
+          autoFocus: false,
+          data:{user:""}
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          //
+        });
+      }
+      catch(error){
+        console.log(error);
+      }
+    }
   }
 

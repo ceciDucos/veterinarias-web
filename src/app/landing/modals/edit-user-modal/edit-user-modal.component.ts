@@ -14,7 +14,8 @@ export class UserEditModalComponent {
   public submitted = false;
   public saving = false;
 
-  constructor(public dialogRef: MatDialogRef<UserEditModalComponent>) {
+  constructor(public dialogRef: MatDialogRef<UserEditModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {}
