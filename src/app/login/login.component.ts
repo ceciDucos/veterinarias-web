@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from '../message-handler/message.service';
 import { ClientService } from '../services/client.service';
 import { VeterinariaService } from '../services/veterinaria.service';
@@ -20,43 +21,42 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private veterinariaService: VeterinariaService,
     private clientService: ClientService,
     private formBuilder: FormBuilder,
-    private messageService: MessageService) {
-    // redirect to home if already logged in
-    // if (this.authenticationService.currentUserValue) {
-    //   this.router.navigate(['/landing']);
-    // }
-  }
+    private messageService: MessageService,
+    private router: Router,) {
 
-  async ngOnInit() {
-    try {
-      const response = await this.veterinariaService.getVeterinarias();
-      console.log(response);
-      // const veterinaria = await this.veterinariaService.getVeterinaria(1);
-      // console.log(veterinaria);
-    } catch (error) {
-      console.log(error);
+    //si esta loggeado redirecciona al
+    if (this.clientService.currentUserValue) {
+      this.router.navigate(['/landing']);
     }
   }
 
+  async ngOnInit() { }
+
   changeStep() {
     this.currentStep = this.currentStep === 'login' ? 'register' : 'login';
-  }
-
-  isDisabled(): boolean {
-    const formName = this.currentStep === 'login' ? 'login' : 'register';
-    return this[`${formName}Form`].invalid && this[`${formName}Submitted`];
   }
 
   submit() {
     const name = this.currentStep === 'login' ? 'login' : 'register';
     this.loginSubmitted = true;
 
-    if (this[`${name}Form`].invalid) {
+    if (this.loginForm.invalid) {
       return;
     }
+
+    this.clientService.login(this.loginForm.get('name').value,
+      this.loginForm.get('password').value)
+      .subscribe(
+        data => {
+          this.messageService.showSuccess('Ingresado correctamente', 3000);
+          this.router.navigate(['/landing']);
+        },
+        error => {
+          this.loading = false;
+          this.messageService.showError(error, 30333);
+        });
   }
 
   async registerUser(event) {
@@ -64,6 +64,9 @@ export class LoginComponent implements OnInit {
     console.log(event);
     try {
       await this.clientService.addUser(event);
+      if (this.clientService.currentUserValue) {
+        this.router.navigate(['/landing']);
+      }
     } catch (error) {
       this.messageService.showError(error);
     }
