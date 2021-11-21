@@ -5,14 +5,75 @@
   background-color: $light-black-color;
   padding: 5rem;
   color: $white-color;
+  color: white;
 
   h1 {
-    font-size: 3em;
+    font-size: 2.5em;
     margin-bottom: 2rem;
   }
 
   .data {
-    font-size: 1.6em;
+    font-size: 1em;
+    vertical-align: -webkit-baseline-middle
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .contact {
+      font-size: 1.7em;
+    }
+  }
+
+  .social-line{
+    
+    display: flex;
+    padding-left: 2rem;
+  }
+
+  .columns {
+
+    display: flex;
+    justify-content: space-between;
+
+    .first-column{
+      width: 20%;
+      vertical-align: middle;
+      padding: (0,3,0,3);
+
+      .list {
+        padding-left: 2rem;
+        font-size: 2em;
+        p{
+          padding-top: 0.6rem;
+        }
+      }
+    }
+
+    .second-column {
+      width: 20%;
+      vertical-align: middle;
+    }
+  
+    .third-column {
+      width: 15%;
+      text-align-last: right;
+    }
+
+    .fourth-column {
+      width: 20%;
+      .consult-list{
+        display: grid;
+        padding-left: 2rem;
+        font-size: 2em;
+        a{
+          padding-bottom: 0.6rem;
+        }
+      }
+    }
+
   }
 
   .rights {
@@ -20,7 +81,7 @@
     justify-content: center;
     width: 100%;
     align-items: center;
-    height: 20rem;
+    height: 15rem;
     font-size: 1.2em;
     color: $grey-color;
   }
