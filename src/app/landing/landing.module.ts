@@ -7,11 +7,12 @@ import { LandingComponent } from './landing.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-
 import { NavbarComponent } from './navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { UserEditModalComponent } from './modals/edit-user-modal/edit-user-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppointmentsPageComponent,
     NavbarComponent,
     FooterComponent,
+    ProfilePageComponent,
+    UserEditModalComponent,
   ],
   imports: [
     RouterModule,
@@ -27,7 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatPaginatorModule,
     MatSortModule,
     CommonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   exports: [
     LandingComponent
