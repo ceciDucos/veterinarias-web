@@ -20,7 +20,6 @@ export class ProfilePageComponent {
     public sourceData = new MatTableDataSource<any>();
     public pageSizeOptions: number[] = [5, 10, 25, 100];
     public pageEvent: PageEvent;
-    
     public client: any;
     private messageService: MessageService;
     
@@ -78,6 +77,21 @@ export class ProfilePageComponent {
       }
       catch(error){
         this.messageService.showError(error);
+      }
+    }
+
+    openModalPassword() {
+      try{
+        const dialogRef = this.dialog.open(ChangePasswordModalComponent, {
+          autoFocus: false,
+          data:{user:""}
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          //
+        });
+      }
+      catch(error){
+        console.log(error);
       }
     }
   }

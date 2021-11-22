@@ -62,4 +62,9 @@ export class ClientService {
   getClient(cedula: number): Promise<any>   {
     return this.http.get(`${environment.apiUrl}/cliente`).toPromise();
   }
+
+  getClient(){
+    return null;
+    //return this.http.get(`${environment.apiUrl}/cliente/${id}`).toPromise();
+  }
 }
