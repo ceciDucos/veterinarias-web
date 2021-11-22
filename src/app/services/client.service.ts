@@ -10,16 +10,22 @@ import { environment } from 'src/environments/environment';
 })
 export class ClientService {
   public $currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public $currentCISubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(
     private http: HttpClient,
     private router: Router
   ) {
     this.$currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
+    this.$currentCISubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentCI')));
   }
 
   public get currentUserValue(): any {
     return this.$currentUserSubject.getValue();
+  }
+
+  public get currentCIValue(): any {
+    return this.$currentCISubject.getValue();
   }
 
   login(username: string, password: string) {
@@ -27,7 +33,10 @@ export class ClientService {
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('currentCI', JSON.stringify(username));
         this.$currentUserSubject.next(user);
+        console.log('username: ' + username);
+        this.$currentCISubject.next(username);
         return user;
       }));
   }
@@ -47,11 +56,16 @@ export class ClientService {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.$currentUserSubject.next(null);
+
+    localStorage.removeItem('currentCI');
+    this.$currentCISubject.next(null);
+
     this.router.navigate(['/login']);
   }
 
   async addUser(user: any): Promise<any> {
     this.$currentUserSubject.next(user);
+    this.$currentCISubject.next(user.cedula);
     return this.http.post(`${environment.apiUrl}/cliente`, { ...user }).toPromise();
   }
 }

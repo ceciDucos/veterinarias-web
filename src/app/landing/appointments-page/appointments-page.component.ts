@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MessageService } from 'src/app/message-handler/message.service';
 import { AppointmentService } from 'src/app/services/appointment.service';
+import { ClientService } from 'src/app/services/client.service';
 
 @Component({
   selector: 'app-appointments-page',
@@ -21,7 +22,8 @@ export class AppointmentsPageComponent implements OnInit {
 
   constructor(
     private appointmentService: AppointmentService,
-    private messageService: MessageService) {
+    private messageService: MessageService,
+    private clientService: ClientService) {
     this.sourceData.data = [
       { numero: 1, nombreMascota: 'Lali', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 3 },
       { numero: 2, nombreMascota: 'Luna', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 0 },
@@ -30,8 +32,10 @@ export class AppointmentsPageComponent implements OnInit {
   }
 
   async ngOnInit() {
-    //const appointments = await this.appointmentService.getAppointments();
-    //console.log(appointments);
+    const cedula = this.clientService.currentCIValue;
+    console.log(cedula);
+    const appointments = await this.appointmentService.getAppointments(cedula);
+    console.log(appointments);
     this.sourceData.paginator = this.paginator;
     this.sourceData.sort = this.sort;
   }
@@ -41,8 +45,8 @@ export class AppointmentsPageComponent implements OnInit {
       console.log(consulta);
       await this.appointmentService.changeAppointmentRating(consulta);
       this.messageService.showSuccess('Consulta calificada exitosamente.');
-    } catch(error) {
+    } catch (error) {
       this.messageService.showError(error);
-    } 
+    }
   }
 }
