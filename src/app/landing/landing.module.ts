@@ -15,6 +15,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { UserEditModalComponent } from './modals/edit-user-modal/edit-user-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgRatingBarModule } from 'ng-rating-bar';
+import { ChangePasswordModalComponent } from './modals/change-password-modal/change-password-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NgRatingBarModule } from 'ng-rating-bar';
     FooterComponent,
     ProfilePageComponent,
     UserEditModalComponent,
+    ChangePasswordModalComponent,
   ],
   imports: [
     RouterModule,

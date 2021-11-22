@@ -58,4 +58,9 @@ export class ClientService {
       token => this.$currentUserSubject.next(token as string)
     );
   }
+
+  getClient(){
+    return null;
+    //return this.http.get(`${environment.apiUrl}/cliente/${id}`).toPromise();
+  }
 }
