@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { UserEditModalComponent } from './modals/edit-user-modal/edit-user-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NgRatingBarModule } from 'ng-rating-bar';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CommonModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    NgRatingBarModule
   ],
   exports: [
     LandingComponent,

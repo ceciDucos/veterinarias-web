@@ -11,6 +11,10 @@ export class AppointmentService {
   ) { }
 
   async getAppointments(): Promise<any> {
-    return this.http.get(`${environment.apiUrl}/consulta`).toPromise();
+    return this.http.get(`${environment.apiUrl}/consultas`).toPromise();
+  }
+
+  async changeAppointmentRating(appointmentRequest: any): Promise<any> {
+    return this.http.put(`${environment.apiUrl}/consultas`, { appointmentRequest }).toPromise();
   }
 }
