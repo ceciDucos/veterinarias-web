@@ -40,6 +40,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgRatingBarModule,
     FormsModule,
     ReactiveFormsModule,
+    NgRatingBarModule
   ],
   exports: [
     LandingComponent,
