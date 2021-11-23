@@ -1,7 +1,7 @@
 
 
 export abstract class MascotaUtil {
-    getRazaMascota(raza: number)
+    static getRazaMascota(raza: number)
     {
         let strigRazaText = '';
         switch (raza) {
@@ -69,7 +69,7 @@ export abstract class MascotaUtil {
     return strigRazaText;     
     }
 
-    getVacunasAlDia(alDia: boolean) {
+    static getVacunasAlDia(alDia: boolean) {
         return alDia ? 'Si' : 'No';
     }
 }

@@ -8,6 +8,7 @@ import { ChangePasswordModalComponent } from '../modals/change-password-modal/ch
 import { UserEditModalComponent } from '../modals/edit-user-modal/edit-user-modal.component';
 import { ClientService } from 'src/app/services/client.service';
 import { MessageService } from 'src/app/message-handler/message.service';
+import { MascotaUtil } from './mascota.util';
 
 @Component({
   selector: 'app-profile-page',
@@ -80,6 +81,14 @@ export class ProfilePageComponent implements AfterViewInit {
     catch(error){
       this.messageService.showError(error);
     }
+  }
+
+  getRaza(raza: number) {
+    return MascotaUtil.getRazaMascota(raza);
+  }
+
+  getVacunas(vacunas: boolean) {
+    return MascotaUtil.getVacunasAlDia(vacunas);
   }
 }
 
