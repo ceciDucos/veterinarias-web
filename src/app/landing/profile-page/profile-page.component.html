@@ -1,53 +1,53 @@
 <section *ngIf="client">
-    <h1>Perfil</h1>
-    <div class="profile-section">
-        <p class="item-atribute"><b class="atribute-title">Nombre: </b> {{client.Nombre}}</p>
-        <p class="item-atribute"><b class="atribute-title">Dirección: </b> {{client.Direccion}}</p>
-        <p class="item-atribute"><b class="atribute-title">Teléfono: </b> {{client.Telefono}}</p>
-        <p class="item-atribute"><b class="atribute-title">Correo: </b> {{client.Correo}}</p>
-    </div>
-    <div class="button-section">
-        <a class="action-btn button" (click)="openModalEdit()">Editar Perfil</a>
-        <a class="action-btn button" (click)="openModalPassword()">Cambiar Contraseña</a>
-    </div>
+  <h1>Perfil</h1>
+  <div class="profile-section">
+    <p class="item-atribute"><b class="atribute-title">Nombre: </b> {{client.Nombre}}</p>
+    <p class="item-atribute"><b class="atribute-title">Dirección: </b> {{client.Direccion}}</p>
+    <p class="item-atribute"><b class="atribute-title">Teléfono: </b> {{client.Telefono}}</p>
+    <p class="item-atribute"><b class="atribute-title">Correo: </b> {{client.Correo}}</p>
+  </div>
+  <div class="button-section">
+    <a class="action-btn button" (click)="openModalEdit()">Editar Perfil</a>
+    <a class="action-btn button" (click)="openModalPassword()">Cambiar Contraseña</a>
+  </div>
 
-    <div class="mascota-section">
-        <h1>Mascotas</h1>
-        <table mat-table [dataSource]="sourceData" matSort>
-    
-        <ng-container matColumnDef="nombreMascota">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre de mascota</th>
-            <td mat-cell *matCellDef="let consulta">
-            {{consulta.nombreMascota}}
-            </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="razaMascota">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Raza</th>
-            <td mat-cell *matCellDef="let consulta">
-            {{consulta.razaMascota}}
-            </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="edadMascota">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Edad</th>
-            <td mat-cell *matCellDef="let consulta">
-            {{consulta.edadMascota}}
-            </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="vacunasMascota">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Vacunas</th>
-            <td mat-cell *matCellDef="let consulta">
-            {{consulta.vacunasMascota}}
-            </td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
-        </table>
-        <!-- <mat-paginator class="page-number" [length]="100" [pageSize]="10" [pageSizeOptions]="pageSizeOptions"
-        (page)="pageEvent = $event">
-        </mat-paginator> -->
-    </div>
-  </section>
+  <div class="mascota-section">
+    <h1>Mascotas</h1>
+    <table mat-table [dataSource]="sourceData" matSort>
+
+      <ng-container matColumnDef="Nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre de mascota</th>
+        <td mat-cell *matCellDef="let mascota">
+          {{mascota.Nombre}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Raza">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Raza</th>
+        <td mat-cell *matCellDef="let mascota">
+          {{mascota.Raza}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Edad">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Edad</th>
+        <td mat-cell *matCellDef="let mascota">
+          {{mascota.Edad}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="VacunaAlDia">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Vacunas</th>
+        <td mat-cell *matCellDef="let mascota">
+          {{mascota.VacunaAlDia}}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+    </table>
+    <!-- <mat-paginator class="page-number" [length]="100" [pageSize]="10" [pageSizeOptions]="pageSizeOptions"
+      (page)="pageEvent = $event">
+    </mat-paginator> -->
+  </div>
+</section>
