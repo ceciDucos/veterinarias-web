@@ -85,15 +85,15 @@ export class ProfilePageComponent implements AfterViewInit {
     }
   }
 
-  getFoto(foto: any) {
-    return this.domSanitizer.bypassSecurityTrustUrl(foto);
-  }
-
   getRaza(raza: number) {
     return MascotaUtil.getRazaMascota(raza);
   }
 
   getVacunas(vacunas: boolean) {
     return MascotaUtil.getVacunasAlDia(vacunas);
+  }
+
+  getFoto(foto: any) {
+    return this.domSanitizer.bypassSecurityTrustUrl(foto);
   }
 }
