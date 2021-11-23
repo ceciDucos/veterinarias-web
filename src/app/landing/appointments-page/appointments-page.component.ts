@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MessageService } from 'src/app/message-handler/message.service';
 import { AppointmentService } from 'src/app/services/appointment.service';
+import { ClientService } from 'src/app/services/client.service';
 
 @Component({
   selector: 'app-appointments-page',
@@ -18,18 +20,30 @@ export class AppointmentsPageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private appointmentService: AppointmentService) {
+  constructor(
+    private appointmentService: AppointmentService,
+    private messageService: MessageService,
+    private clientService: ClientService) {
     this.sourceData.data = [
-      { nombreMascota: 'Lali', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 4 },
-      { nombreMascota: 'Luna', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 4 },
-      { nombreMascota: 'Sultan', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 4 }
+      { numero: 1, nombreMascota: 'Lali', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 3 },
+      { numero: 2, nombreMascota: 'Luna', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 0 },
+      { numero: 3, nombreMascota: 'Sultan', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 5 }
     ]
   }
 
   async ngOnInit() {
-    //const appointments = await this.appointmentService.getAppointments();
-    //console.log(appointments);
+    const cedula = this.clientService.currentCIValue;
+    const appointments = await this.appointmentService.getAppointments(cedula);
     this.sourceData.paginator = this.paginator;
     this.sourceData.sort = this.sort;
+  }
+
+  async changeRating(consulta) {
+    try {
+      await this.appointmentService.changeAppointmentRating(consulta);
+      this.messageService.showSuccess('Consulta calificada exitosamente.');
+    } catch (error) {
+      this.messageService.showError(error);
+    }
   }
 }

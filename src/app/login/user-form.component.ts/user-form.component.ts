@@ -36,10 +36,6 @@ export class UserFormComponent implements OnInit {
   async ngOnInit() {
     try {
       this.veterinarias = await this.veterinariaService.getVeterinarias();
-
-      console.log(this.veterinarias);
-      // const veterinaria = await this.veterinariaService.getVeterinaria(1);
-      // console.log(veterinaria);
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +43,6 @@ export class UserFormComponent implements OnInit {
 
   submit() {
     this.submitted = true;
-    console.log(this.registerForm.value);
     const clientRequest = {
       nombre: this.registerForm.get('userName').value,
       cedula: this.registerForm.get('cedula').value,

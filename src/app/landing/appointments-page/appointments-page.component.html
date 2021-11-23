@@ -27,7 +27,11 @@
     <ng-container matColumnDef="calificacion">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Calificación</th>
       <td mat-cell *matCellDef="let consulta">
-        {{consulta.calificacion}}
+        <ng-rating-bar 
+          [(value)]="consulta.calificacion" 
+          [ratingCount]="5"
+          (valueChange)="changeRating(consulta)">
+        </ng-rating-bar>
       </td>
     </ng-container>
 
