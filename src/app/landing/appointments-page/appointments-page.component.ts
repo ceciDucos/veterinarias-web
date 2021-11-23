@@ -33,16 +33,13 @@ export class AppointmentsPageComponent implements OnInit {
 
   async ngOnInit() {
     const cedula = this.clientService.currentCIValue;
-    console.log(cedula);
     const appointments = await this.appointmentService.getAppointments(cedula);
-    console.log(appointments);
     this.sourceData.paginator = this.paginator;
     this.sourceData.sort = this.sort;
   }
 
   async changeRating(consulta) {
     try {
-      console.log(consulta);
       await this.appointmentService.changeAppointmentRating(consulta);
       this.messageService.showSuccess('Consulta calificada exitosamente.');
     } catch (error) {

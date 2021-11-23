@@ -60,8 +60,6 @@ export class LoginComponent implements OnInit {
   }
 
   async registerUser(event) {
-    console.log('lo que viene del register');
-    console.log(event);
     try {
       await this.clientService.addUser(event);
       if (this.clientService.currentUserValue) {

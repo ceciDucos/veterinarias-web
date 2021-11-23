@@ -13,7 +13,7 @@ export class AppointmentService {
   ) { }
 
   async getAppointments(cedula: number): Promise<any> {
-    return this.http.get(`${environment.apiUrl}/consultas?=cedula=${cedula}`).toPromise();
+    return this.http.get(`${environment.apiUrl}/consultas?cedula=${cedula}`).toPromise();
   }
 
   async changeAppointmentRating(appointmentRequest: any): Promise<any> {

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { ErrorComponent } from './error-page/error-page.component';
 import { LandingModule } from './landing/landing.module';
@@ -14,6 +14,8 @@ import { MessageService } from './message-handler/message.service';
 import { UserFormComponent } from './login/user-form.component.ts/user-form.component';
 import { ClientService } from './services/client.service';
 import { AppointmentService } from './services/appointment.service';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { AppointmentService } from './services/appointment.service';
   providers: [
     MessageService,
     ClientService,
-    AppointmentService
+    AppointmentService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

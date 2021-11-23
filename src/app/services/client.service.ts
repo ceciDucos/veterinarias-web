@@ -9,15 +9,15 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ClientService {
-  public $currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  public $currentCISubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public $currentUserSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+  public $currentCISubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
   constructor(
     private http: HttpClient,
     private router: Router
   ) {
-    this.$currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
-    this.$currentCISubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentCI')));
+    this.$currentUserSubject = new BehaviorSubject<string>(localStorage.getItem('currentUser'));
+    this.$currentCISubject = new BehaviorSubject<string>(localStorage.getItem('currentCI'));
   }
 
   public get currentUserValue(): any {
@@ -30,27 +30,16 @@ export class ClientService {
 
   login(username: string, password: string) {
     return this.http.post<any>(`${environment.apiUrl}/login`, { username, password })
-      .pipe(map(user => {
+      .pipe(map(token => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        localStorage.setItem('currentCI', JSON.stringify(username));
-        this.$currentUserSubject.next(user);
-        console.log('username: ' + username);
+        localStorage.setItem('currentUser', token);
+        localStorage.setItem('currentCI', username);
+        this.$currentUserSubject.next(token);
         this.$currentCISubject.next(username);
-        return user;
+        return token;
       }));
   }
 
-  getHeaders() {
-    const headers = {
-      Authorization: `Bearer ${this.$currentUserSubject.getValue().token}`
-    }
-    return headers;
-  }
-
-  getToken() {
-    return JSON.parse(localStorage.getItem('currentUser')).token;
-  }
 
   logout() {
     // remove user from local storage to log user out
@@ -64,8 +53,9 @@ export class ClientService {
   }
 
   async addUser(user: any): Promise<any> {
-    this.$currentUserSubject.next(user);
     this.$currentCISubject.next(user.cedula);
-    return this.http.post(`${environment.apiUrl}/cliente`, { ...user }).toPromise();
+    await this.http.post(`${environment.apiUrl}/cliente`, { ...user }).toPromise().then(
+      token => this.$currentUserSubject.next(token as string)
+    );
   }
 }
