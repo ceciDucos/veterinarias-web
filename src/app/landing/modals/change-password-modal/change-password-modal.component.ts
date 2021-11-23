@@ -31,9 +31,7 @@ export class ChangePasswordModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   async submit() {
     this.submitted = true;
@@ -67,5 +65,4 @@ export class ChangePasswordModalComponent {
   close() {
     this.dialogRef.close();
   }
-
 }
