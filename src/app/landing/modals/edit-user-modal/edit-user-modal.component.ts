@@ -40,7 +40,6 @@ export class UserEditModalComponent {
   }
 
   async submit() {
-
     this.submitted = true;
     if (this.editUserForm.invalid) {
       return;

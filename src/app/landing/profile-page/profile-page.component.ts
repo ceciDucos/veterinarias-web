@@ -66,17 +66,18 @@ export class ProfilePageComponent {
   }
 
   openModalPassword() {
-    try {
+    try{
       const dialogRef = this.dialog.open(ChangePasswordModalComponent, {
         autoFocus: false,
-        data: { client: this.client }
+        data:{client:this.client}
       });
       dialogRef.afterClosed().subscribe(result => {
         //
       });
     }
-    catch (error) {
-      console.log(error);
+    catch(error){
+      this.messageService.showError(error);
     }
   }
 }
+
