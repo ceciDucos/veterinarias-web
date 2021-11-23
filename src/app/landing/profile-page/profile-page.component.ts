@@ -10,77 +10,73 @@ import { ClientService } from 'src/app/services/client.service';
 import { MessageService } from 'src/app/message-handler/message.service';
 
 @Component({
-    selector: 'app-profile-page',
-    templateUrl: 'profile-page.component.html',
-    styleUrls: ['./profile-page.component.scss']
-  })
-  
+  selector: 'app-profile-page',
+  templateUrl: 'profile-page.component.html',
+  styleUrls: ['./profile-page.component.scss']
+})
+
 export class ProfilePageComponent {
-    public tableColumns = ['nombreMascota', 'razaMascota', 'edadMascota', 'vacunasMascota'];
-    public sourceData = new MatTableDataSource<any>();
-    public pageSizeOptions: number[] = [5, 10, 25, 100];
-    public pageEvent: PageEvent;
-    public client: any;
-    private messageService: MessageService;
-    
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
+  public tableColumns = ['nombreMascota', 'razaMascota', 'edadMascota', 'vacunasMascota'];
+  public sourceData = new MatTableDataSource<any>();
+  public pageSizeOptions: number[] = [5, 10, 25, 100];
+  public pageEvent: PageEvent;
+  public client: any;
+  private messageService: MessageService;
 
-    constructor(
-      private clientService: ClientService,
-      public dialog: MatDialog,
-      private formBuilder: FormBuilder,
-      ) {
-      this.sourceData.data = [
-        { nombreMascota: 'ElPerroSinNombre', razaMascota: 'Caniche', edadMascota: '1', vacunasMascota: 'Si' },
-        { nombreMascota: 'Poncho', razaMascota: 'Policia', edadMascota: '2', vacunasMascota: 'Si' },
-        { nombreMascota: 'Felix', razaMascota: 'Otro', edadMascota: '3', vacunasMascota: 'Si' },
-      ]
-    }
-  
-    async ngOnInit() {
-      const cedula = this.clientService.currentCIValue;
-      try 
-      {
-        this.client = await this.clientService.getClient(cedula);
-      } 
-      catch (error) 
-      {
-        this.messageService.showError(error);
-      }
-    }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-    openModalEdit() {
-      try{
-        const dialogRef = this.dialog.open(UserEditModalComponent, {
-          autoFocus: false,
-          data:{client:this.client}
-        });
-        dialogRef.afterClosed().subscribe(result => {
-          if (result) {
-            console.log(result);
-            this.client = result;
-          }
-        });
-      }
-      catch(error){
-        this.messageService.showError(error);
-      }
-    }
+  constructor(
+    private clientService: ClientService,
+    public dialog: MatDialog,
+    private formBuilder: FormBuilder,
+  ) {
+    this.sourceData.data = [
+      { nombreMascota: 'ElPerroSinNombre', razaMascota: 'Caniche', edadMascota: '1', vacunasMascota: 'Si' },
+      { nombreMascota: 'Poncho', razaMascota: 'Policia', edadMascota: '2', vacunasMascota: 'Si' },
+      { nombreMascota: 'Felix', razaMascota: 'Otro', edadMascota: '3', vacunasMascota: 'Si' },
+    ]
+  }
 
-    openModalPassword() {
-      try{
-        const dialogRef = this.dialog.open(ChangePasswordModalComponent, {
-          autoFocus: false,
-          data:{client:this.client}
-        });
-        dialogRef.afterClosed().subscribe(result => {
-          //
-        });
-      }
-      catch(error){
-        console.log(error);
-      }
+  async ngOnInit() {
+    try {
+      this.client = await this.clientService.getClient();
+    }
+    catch (error) {
+      this.messageService.showError(error);
     }
   }
 
+  openModalEdit() {
+    try {
+      const dialogRef = this.dialog.open(UserEditModalComponent, {
+        autoFocus: false,
+        data: { client: this.client }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          console.log(result);
+          this.client = result;
+        }
+      });
+    }
+    catch (error) {
+      this.messageService.showError(error);
+    }
+  }
+
+  openModalPassword() {
+    try {
+      const dialogRef = this.dialog.open(ChangePasswordModalComponent, {
+        autoFocus: false,
+        data: { client: this.client }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        //
+      });
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+}

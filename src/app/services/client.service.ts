@@ -64,7 +64,7 @@ export class ClientService {
     await this.http.put(`${environment.apiUrl}/cliente`, { ...user }).toPromise();
   }
 
-  getClient(cedula: number): Promise<any> {
+  getClient(): Promise<any> {
     return this.http.get(`${environment.apiUrl}/cliente`).toPromise();
   }
 }
