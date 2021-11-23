@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ChangePasswordModalComponent } from '../modals/change-password-modal/change-password-modal.component';
 import { UserEditModalComponent } from '../modals/edit-user-modal/edit-user-modal.component';
 import { ClientService } from 'src/app/services/client.service';
+import { MessageService } from 'src/app/message-handler/message.service';
 
 @Component({
     selector: 'app-profile-page',
@@ -19,12 +20,15 @@ export class ProfilePageComponent {
     public sourceData = new MatTableDataSource<any>();
     public pageSizeOptions: number[] = [5, 10, 25, 100];
     public pageEvent: PageEvent;
-    public client = [];
+    
+    public client: any;
+    private messageService: MessageService;
+    
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
     constructor(
-      private clientservice: ClientService,
+      private clientService: ClientService,
       public dialog: MatDialog,
       private formBuilder: FormBuilder,
       ) {
@@ -36,13 +40,14 @@ export class ProfilePageComponent {
     }
   
     async ngOnInit() {
+      const cedula = this.clientService.currentCIValue;
       try 
       {
-        this.client = await this.clientservice.getClient();
+        this.client = await this.clientService.getClient(cedula);
       } 
       catch (error) 
       {
-        
+        this.messageService.showError(error);
       }
     }
 
@@ -57,7 +62,7 @@ export class ProfilePageComponent {
         });
       }
       catch(error){
-        console.log(error);
+        this.messageService.showError(error);
       }
     }
 
@@ -72,7 +77,7 @@ export class ProfilePageComponent {
         });
       }
       catch(error){
-        console.log(error);
+        this.messageService.showError(error);
       }
     }
   }

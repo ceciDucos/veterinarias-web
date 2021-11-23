@@ -16,6 +16,7 @@ import { UserEditModalComponent } from './modals/edit-user-modal/edit-user-modal
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgRatingBarModule } from 'ng-rating-bar';
 import { ChangePasswordModalComponent } from './modals/change-password-modal/change-password-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { ChangePasswordModalComponent } from './modals/change-password-modal/cha
     CommonModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    NgRatingBarModule
+    NgRatingBarModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     LandingComponent,

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -11,11 +10,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageHandlerComponent } from './message-handler/message-handler.component';
 import { MessageService } from './message-handler/message.service';
-import { UserFormComponent } from './login/user-form.component.ts/user-form.component';
 import { ClientService } from './services/client.service';
 import { AppointmentService } from './services/appointment.service';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { UserFormComponent } from './login/user-form.component.ts/user-form.component';
 
 
 @NgModule({
@@ -24,7 +23,7 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
     LoginComponent,
     ErrorComponent,
     MessageHandlerComponent,
-    UserFormComponent
+    UserFormComponent,
   ],
   imports: [
     BrowserModule,
