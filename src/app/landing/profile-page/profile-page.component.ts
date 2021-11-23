@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -15,11 +15,11 @@ import { MessageService } from 'src/app/message-handler/message.service';
   styleUrls: ['./profile-page.component.scss']
 })
 
-export class ProfilePageComponent {
-  public tableColumns = ['nombreMascota', 'razaMascota', 'edadMascota', 'vacunasMascota'];
+export class ProfilePageComponent implements AfterViewInit {
+  public columns = ['Nombre', 'Raza', 'Edad', 'VacunaAlDia'];
   public sourceData = new MatTableDataSource<any>();
-  public pageSizeOptions: number[] = [5, 10, 25, 100];
-  public pageEvent: PageEvent;
+  // public pageSizeOptions: number[] = [1, 5, 10, 25, 100];
+  // public pageEvent: PageEvent;
   public client: any;
   private messageService: MessageService;
 
@@ -31,20 +31,22 @@ export class ProfilePageComponent {
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
   ) {
-    this.sourceData.data = [
-      { nombreMascota: 'ElPerroSinNombre', razaMascota: 'Caniche', edadMascota: '1', vacunasMascota: 'Si' },
-      { nombreMascota: 'Poncho', razaMascota: 'Policia', edadMascota: '2', vacunasMascota: 'Si' },
-      { nombreMascota: 'Felix', razaMascota: 'Otro', edadMascota: '3', vacunasMascota: 'Si' },
-    ]
   }
 
   async ngOnInit() {
     try {
       this.client = await this.clientService.getClient();
+      this.sourceData.data = this.client.Mascotas;
+      // this.sourceData.paginator = this.paginator;
+
     }
     catch (error) {
       this.messageService.showError(error);
     }
+  }
+
+  ngAfterViewInit() {
+    this.sourceData.sort = this.sort;
   }
 
   openModalEdit() {
