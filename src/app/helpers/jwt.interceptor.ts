@@ -3,6 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ClientService } from '../services/client.service';
+import { MessageService } from '../message-handler/message.service';
 
 
 @Injectable()

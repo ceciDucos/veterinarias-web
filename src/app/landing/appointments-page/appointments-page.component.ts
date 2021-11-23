@@ -24,16 +24,12 @@ export class AppointmentsPageComponent implements OnInit {
     private appointmentService: AppointmentService,
     private messageService: MessageService,
     private clientService: ClientService) {
-    this.sourceData.data = [
-      { numero: 1, nombreMascota: 'Lali', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 3 },
-      { numero: 2, nombreMascota: 'Luna', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 0 },
-      { numero: 3, nombreMascota: 'Sultan', fecha: "12/10/2021", descripcion: 'corte de pelo y uñas.', calificacion: 5 }
-    ]
   }
 
   async ngOnInit() {
     const cedula = this.clientService.currentCIValue;
     const appointments = await this.appointmentService.getAppointments(cedula);
+    this.sourceData.data = appointments;
     this.sourceData.paginator = this.paginator;
     this.sourceData.sort = this.sort;
   }
