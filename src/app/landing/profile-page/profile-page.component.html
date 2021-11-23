@@ -1,10 +1,10 @@
-<section>
+<section *ngIf="client">
     <h1>Perfil</h1>
     <div class="profile-section">
-        <p class="item-atribute">Nombre: {{client.Nombre}}</p>
-        <p class="item-atribute">Dirección: {{client.Direccion}}</p>
-        <p class="item-atribute">Teléfono: {{client.Telefono}}</p>
-        <p class="item-atribute">Correo: {{client.Correo}}</p>
+        <p class="item-atribute"><b class="atribute-title">Nombre: </b> {{client.Nombre}}</p>
+        <p class="item-atribute"><b class="atribute-title">Dirección: </b> {{client.Direccion}}</p>
+        <p class="item-atribute"><b class="atribute-title">Teléfono: </b> {{client.Telefono}}</p>
+        <p class="item-atribute"><b class="atribute-title">Correo: </b> {{client.Correo}}</p>
     </div>
     <div class="button-section">
         <a class="action-btn button" (click)="openModalEdit()">Editar Perfil</a>

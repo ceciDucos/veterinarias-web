@@ -56,7 +56,11 @@ section {
         font-size: 1.5em;
         color: $grey-color;
         user-select:none;
-        width: 30rem;
+        width: 100%;
+
+        .atribute-title {
+            margin-right: 2rem;
+        }
     }
 
     .button-section{
