@@ -44,26 +44,26 @@ export class ChangePasswordModalComponent {
     try {
       if (!this.saving) {
         this.saving = true;
-        const user = {      
-          CurrentPassword: this.passwordForm.controls.passwordActual.value,    
+        const user = {
+          CurrentPassword: this.passwordForm.controls.passwordActual.value,
           NewPassword: this.passwordForm.controls.passwordNueva.value,
         }
         await this.clientService.editPassword(user);
         this.messageService.showSuccess("La contraseña se actualizó correctamente.", 3000);
         this.dialogRef.close(user);
-      } 
-    } 
+      }
+    }
     catch (error) {
       this.messageService.showError(error, 3000);
       if (error.status === 401) {
         this.dialogRef.close(false);
       }
-    } 
+    }
     finally {
       this.saving = false;
     }
   }
-  
+
   close() {
     this.dialogRef.close();
   }

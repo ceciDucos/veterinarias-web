@@ -39,8 +39,8 @@ export class ProfilePageComponent implements AfterViewInit {
     try {
       this.client = await this.clientService.getClient();
       //this.sourceData.data = this.client.Mascotas;
-      this.sourceData.data = this.client.Mascotas.map(mascota=>{
-        return{...mascota, Foto: this.getFoto(mascota.CarnetInscripcion.Foto)};
+      this.sourceData.data = this.client.Mascotas.map(mascota => {
+        return { ...mascota, Foto: this.getFoto(mascota.CarnetInscripcion.Foto) };
       });
     }
     catch (error) {
@@ -85,7 +85,7 @@ export class ProfilePageComponent implements AfterViewInit {
     }
   }
 
-  getFoto(foto: any){
+  getFoto(foto: any) {
     return this.domSanitizer.bypassSecurityTrustUrl(foto);
   }
 
