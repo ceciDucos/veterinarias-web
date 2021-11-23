@@ -76,21 +76,6 @@ export class ProfilePageComponent {
         });
       }
       catch(error){
-        this.messageService.showError(error);
-      }
-    }
-
-    openModalPassword() {
-      try{
-        const dialogRef = this.dialog.open(ChangePasswordModalComponent, {
-          autoFocus: false,
-          data:{user:""}
-        });
-        dialogRef.afterClosed().subscribe(result => {
-          //
-        });
-      }
-      catch(error){
         console.log(error);
       }
     }
