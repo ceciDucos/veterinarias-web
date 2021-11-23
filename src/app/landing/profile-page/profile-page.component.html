@@ -1,15 +1,14 @@
 <section>
     <h1>Perfil</h1>
     <div class="profile-section">
-        <p class="item-atribute">Usuario:</p>
-        <p class="item-atribute">Dirección:</p>
-        <p class="item-atribute">Correo:</p>
-        <p class="item-atribute">Teléfono:</p>
-        <p class="item-atribute">Usuario:</p>
+        <p class="item-atribute">Nombre: {{client.Nombre}}</p>
+        <p class="item-atribute">Dirección: {{client.Direccion}}</p>
+        <p class="item-atribute">Teléfono: {{client.Telefono}}</p>
+        <p class="item-atribute">Correo: {{client.Correo}}</p>
     </div>
     <div class="button-section">
-        <a class="action-btn button" (click)="openModalEdit()">Editar Perfil</a> <!--(click)="openModalEdit()"-->
-        <a class="action-btn button">Cambiar Contraseña</a>
+        <a class="action-btn button" (click)="openModalEdit()">Editar Perfil</a>
+        <a class="action-btn button" (click)="openModalPassword()">Cambiar Contraseña</a>
     </div>
 
     <div class="mascota-section">

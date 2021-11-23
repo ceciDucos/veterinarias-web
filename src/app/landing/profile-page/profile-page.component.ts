@@ -4,7 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ChangePasswordModalComponent } from '../modals/change-password-modal/change-password-modal.component';
 import { UserEditModalComponent } from '../modals/edit-user-modal/edit-user-modal.component';
+import { ClientService } from 'src/app/services/client.service';
+import { MessageService } from 'src/app/message-handler/message.service';
 
 @Component({
     selector: 'app-profile-page',
@@ -17,10 +20,14 @@ export class ProfilePageComponent {
     public sourceData = new MatTableDataSource<any>();
     public pageSizeOptions: number[] = [5, 10, 25, 100];
     public pageEvent: PageEvent;
+    public client: any;
+    private messageService: MessageService;
+    
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
     constructor(
+      private clientService: ClientService,
       public dialog: MatDialog,
       private formBuilder: FormBuilder,
       ) {
@@ -32,13 +39,35 @@ export class ProfilePageComponent {
     }
   
     async ngOnInit() {
-      //this.sourceData.paginator = this.paginator;
-      //this.sourceData.sort = this.sort;
+      const cedula = this.clientService.currentCIValue;
+      try 
+      {
+        this.client = await this.clientService.getClient(cedula);
+      } 
+      catch (error) 
+      {
+        this.messageService.showError(error);
+      }
     }
 
     openModalEdit() {
       try{
         const dialogRef = this.dialog.open(UserEditModalComponent, {
+          autoFocus: false,
+          data:{user:""}
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          //
+        });
+      }
+      catch(error){
+        this.messageService.showError(error);
+      }
+    }
+
+    openModalPassword() {
+      try{
+        const dialogRef = this.dialog.open(ChangePasswordModalComponent, {
           autoFocus: false,
           data:{user:""}
         });
