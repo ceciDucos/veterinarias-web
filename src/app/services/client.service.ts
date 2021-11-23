@@ -59,12 +59,12 @@ export class ClientService {
     );
   }
 
-  getClient(cedula: number): Promise<any>   {
-    return this.http.get(`${environment.apiUrl}/cliente`).toPromise();
+  async editClient(user: any): Promise<any> {
+    this.$currentCISubject.next(user.cedula);
+    await this.http.put(`${environment.apiUrl}/cliente`, { ...user }).toPromise();
   }
 
-  getClient(){
-    return null;
-    //return this.http.get(`${environment.apiUrl}/cliente/${id}`).toPromise();
+  getClient(cedula: number): Promise<any>   {
+    return this.http.get(`${environment.apiUrl}/cliente`).toPromise();
   }
 }

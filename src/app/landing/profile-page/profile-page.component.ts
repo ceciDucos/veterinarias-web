@@ -54,10 +54,13 @@ export class ProfilePageComponent {
       try{
         const dialogRef = this.dialog.open(UserEditModalComponent, {
           autoFocus: false,
-          data:{user:""}
+          data:{client:this.client}
         });
         dialogRef.afterClosed().subscribe(result => {
-          //
+          if (result) {
+            console.log(result);
+            this.client = result;
+          }
         });
       }
       catch(error){
@@ -69,7 +72,7 @@ export class ProfilePageComponent {
       try{
         const dialogRef = this.dialog.open(ChangePasswordModalComponent, {
           autoFocus: false,
-          data:{user:""}
+          data:{client:this.client}
         });
         dialogRef.afterClosed().subscribe(result => {
           //
