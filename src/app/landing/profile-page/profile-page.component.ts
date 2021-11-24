@@ -1,8 +1,6 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ChangePasswordModalComponent } from '../modals/change-password-modal/change-password-modal.component';
 import { UserEditModalComponent } from '../modals/edit-user-modal/edit-user-modal.component';
@@ -17,15 +15,10 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./profile-page.component.scss']
 })
 
-export class ProfilePageComponent implements AfterViewInit {
+export class ProfilePageComponent {
   public columns = ['Nombre', 'Raza', 'Edad', 'VacunaAlDia', 'Foto'];
   public sourceData = new MatTableDataSource<any>();
-  // public pageSizeOptions: number[] = [1, 5, 10, 25, 100];
-  // public pageEvent: PageEvent;
   public client: any;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private clientService: ClientService,
@@ -47,10 +40,6 @@ export class ProfilePageComponent implements AfterViewInit {
     catch (error) {
       this.messageService.showError(error);
     }
-  }
-
-  ngAfterViewInit() {
-    this.sourceData.sort = this.sort;
   }
 
   openModalEdit() {
