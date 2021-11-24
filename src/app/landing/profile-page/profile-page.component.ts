@@ -37,9 +37,9 @@ export class ProfilePageComponent implements AfterViewInit {
   async ngOnInit() {
     try {
       this.client = await this.clientService.getClient();
-      this.sourceData.data = this.client.Mascotas;
-      // this.sourceData.paginator = this.paginator;
-
+      this.sourceData.data = this.client.Mascotas.map(mascota=>{
+        return{...mascota, foto: this.getFoto(mascota.CarnetInscripcion.Foto)};
+      });
     }
     catch (error) {
       this.messageService.showError(error);
@@ -81,6 +81,19 @@ export class ProfilePageComponent implements AfterViewInit {
     catch (error) {
       this.messageService.showError(error);
     }
+  }
+
+  getFoto(foto: any){
+    
+    var binary = '';
+    var bytes = new Uint8Array( foto );
+    console.log(bytes);
+    var len = bytes.byteLength;
+    
+    for (var i = 0; i < len; i++) {
+      binary += String.fromCharCode( bytes[ i ] );
+    }
+    return window.btoa( binary );
   }
 
   getRaza(raza: number) {

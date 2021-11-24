@@ -43,6 +43,9 @@ export class UserFormComponent implements OnInit {
 
   submit() {
     this.submitted = true;
+    if(this.registerForm.invalid){
+      return;
+    }
     const clientRequest = {
       nombre: this.registerForm.get('userName').value,
       cedula: this.registerForm.get('cedula').value,

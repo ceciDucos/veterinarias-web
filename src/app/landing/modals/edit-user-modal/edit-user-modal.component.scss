@@ -130,6 +130,10 @@
   min-width: 14rem;
   margin: auto 1rem;
   text-align: center;
+
+  &:disabled {
+    opacity: 0.4;
+  }
 }
 
 .btn-cancel {
