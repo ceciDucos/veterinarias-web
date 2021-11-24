@@ -17,7 +17,7 @@ import { MascotaUtil } from './mascota.util';
 })
 
 export class ProfilePageComponent implements AfterViewInit {
-  public columns = ['Nombre', 'Raza', 'Edad', 'VacunaAlDia'];
+  public columns = ['Nombre', 'Raza', 'Edad', 'VacunaAlDia', 'Foto'];
   public sourceData = new MatTableDataSource<any>();
   // public pageSizeOptions: number[] = [1, 5, 10, 25, 100];
   // public pageEvent: PageEvent;
