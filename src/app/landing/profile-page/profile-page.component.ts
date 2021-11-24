@@ -31,7 +31,8 @@ export class ProfilePageComponent implements AfterViewInit {
     private clientService: ClientService,
     public dialog: MatDialog,
     private messageService: MessageService,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private formBuilder: FormBuilder,
   ) {
   }
 
