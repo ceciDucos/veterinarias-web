@@ -68,7 +68,7 @@ export class ClientService {
     await this.http.put(`${environment.apiUrl}/cliente/password`, { ...user }).toPromise();
   }
 
-  getClient(): Promise<any>   {
+  getClient(): Promise<any> {
     return this.http.get(`${environment.apiUrl}/cliente`).toPromise();
   }
 }

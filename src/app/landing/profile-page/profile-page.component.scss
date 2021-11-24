@@ -21,11 +21,10 @@
     padding: 1rem !important;
     text-align: left !important;
     vertical-align: middle;
-    font-size: 1.3em;
+    font-size: 1.5em;
     border-color: $primary-color;
     background-color: $light-orange;
     color: $grey-color;
-    font-weight: 500;
     font-family: "Montserrat", sans-serif !important;
   }
 }
@@ -37,7 +36,7 @@ table {
 
 section {
   height: 44rem;
-  padding: 4rem;
+  padding: 4rem 4rem 11rem;
   height: 100%;
 
   h1 {
