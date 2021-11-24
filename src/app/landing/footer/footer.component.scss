@@ -24,17 +24,15 @@
 
     .contact {
       font-size: 1.7em;
+      margin-bottom: 1rem;
     }
   }
 
   .social-line{
-    
     display: flex;
-    padding-left: 2rem;
   }
 
   .columns {
-
     display: flex;
     justify-content: space-between;
 
@@ -44,10 +42,10 @@
       padding: (0,3,0,3);
 
       .list {
-        padding-left: 2rem;
-        font-size: 2em;
+        font-size: 1.8em;
         p{
           padding-top: 0.6rem;
+          margin-bottom: 1rem;
         }
       }
     }
@@ -56,7 +54,7 @@
       width: 20%;
       vertical-align: middle;
     }
-  
+
     .third-column {
       width: 15%;
       text-align-last: right;
@@ -66,23 +64,13 @@
       width: 20%;
       .consult-list{
         display: grid;
-        padding-left: 2rem;
         font-size: 2em;
         a{
           padding-bottom: 0.6rem;
+          font-size: 0.8em;
         }
       }
     }
 
-  }
-
-  .rights {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    align-items: center;
-    height: 15rem;
-    font-size: 1.2em;
-    color: $grey-color;
   }
 }

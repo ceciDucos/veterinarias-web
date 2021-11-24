@@ -22,7 +22,6 @@ export class ProfilePageComponent implements AfterViewInit {
   // public pageSizeOptions: number[] = [1, 5, 10, 25, 100];
   // public pageEvent: PageEvent;
   public client: any;
-  private messageService: MessageService;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -31,6 +30,7 @@ export class ProfilePageComponent implements AfterViewInit {
     private clientService: ClientService,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
+    private messageService: MessageService
   ) {
   }
 
@@ -69,16 +69,16 @@ export class ProfilePageComponent implements AfterViewInit {
   }
 
   openModalPassword() {
-    try{
+    try {
       const dialogRef = this.dialog.open(ChangePasswordModalComponent, {
         autoFocus: false,
-        data:{client:this.client}
+        data: { client: this.client }
       });
       dialogRef.afterClosed().subscribe(result => {
         //
       });
     }
-    catch(error){
+    catch (error) {
       this.messageService.showError(error);
     }
   }
@@ -91,4 +91,3 @@ export class ProfilePageComponent implements AfterViewInit {
     return MascotaUtil.getVacunasAlDia(vacunas);
   }
 }
-
