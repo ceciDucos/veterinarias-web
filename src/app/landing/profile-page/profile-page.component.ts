@@ -8,6 +8,8 @@ import { ChangePasswordModalComponent } from '../modals/change-password-modal/ch
 import { UserEditModalComponent } from '../modals/edit-user-modal/edit-user-modal.component';
 import { ClientService } from 'src/app/services/client.service';
 import { MessageService } from 'src/app/message-handler/message.service';
+import { MascotaUtil } from './mascota.util';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile-page',
@@ -16,12 +18,11 @@ import { MessageService } from 'src/app/message-handler/message.service';
 })
 
 export class ProfilePageComponent implements AfterViewInit {
-  public columns = ['Nombre', 'Raza', 'Edad', 'VacunaAlDia'];
+  public columns = ['Nombre', 'Raza', 'Edad', 'VacunaAlDia', 'Foto'];
   public sourceData = new MatTableDataSource<any>();
   // public pageSizeOptions: number[] = [1, 5, 10, 25, 100];
   // public pageEvent: PageEvent;
   public client: any;
-  private messageService: MessageService;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -29,16 +30,18 @@ export class ProfilePageComponent implements AfterViewInit {
   constructor(
     private clientService: ClientService,
     public dialog: MatDialog,
-    private formBuilder: FormBuilder,
+    private messageService: MessageService,
+    private domSanitizer: DomSanitizer
   ) {
   }
 
   async ngOnInit() {
     try {
       this.client = await this.clientService.getClient();
-      this.sourceData.data = this.client.Mascotas;
-      // this.sourceData.paginator = this.paginator;
-
+      //this.sourceData.data = this.client.Mascotas;
+      this.sourceData.data = this.client.Mascotas.map(mascota=>{
+        return{...mascota, Foto: this.getFoto(mascota.CarnetInscripcion.Foto)};
+      });
     }
     catch (error) {
       this.messageService.showError(error);
@@ -78,7 +81,19 @@ export class ProfilePageComponent implements AfterViewInit {
       });
     }
     catch (error) {
-      console.log(error);
+      this.messageService.showError(error);
     }
+  }
+
+  getFoto(foto: any){
+    return this.domSanitizer.bypassSecurityTrustUrl(foto);
+  }
+
+  getRaza(raza: number) {
+    return MascotaUtil.getRazaMascota(raza);
+  }
+
+  getVacunas(vacunas: boolean) {
+    return MascotaUtil.getVacunasAlDia(vacunas);
   }
 }

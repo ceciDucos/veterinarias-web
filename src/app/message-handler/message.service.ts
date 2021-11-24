@@ -43,7 +43,7 @@ export class MessageService {
       if (message.error == 'Unauthorized') {
         return 'No tiene permisos para acceder o su sesión expiro, ingrese nuevamente.';
       }
-      return this.getMessage(message.errors || message.error || message.message || message.messages);
+      return this.getMessage(message.errors || message.error || message.Message || message.messages);
     }
   }
 }

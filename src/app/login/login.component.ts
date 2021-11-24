@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   public currentStep = 'login';
   public loading = false;
   public loginSubmitted = false;
+  public saving = false;
   public loginForm = this.formBuilder.group({
     name: ['', Validators.required],
     password: ['', Validators.required],
@@ -59,13 +60,21 @@ export class LoginComponent implements OnInit {
   }
 
   async registerUser(event) {
-    try {
-      await this.clientService.addUser(event);
-      if (this.clientService.currentUserValue) {
-        this.router.navigate(['/landing']);
+    if(!this.saving)
+    {
+      this.saving=true;
+      try {
+        await this.clientService.addUser(event);
+        if (this.clientService.currentUserValue) {
+          this.router.navigate(['/landing']);
+        }
+      } 
+      catch (error) {
+        this.messageService.showError(error);
       }
-    } catch (error) {
-      this.messageService.showError(error);
-    }
+      finally {
+        this.saving=false;
+      }
+    } 
   }
 }

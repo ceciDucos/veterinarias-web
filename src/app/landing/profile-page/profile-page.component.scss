@@ -10,6 +10,7 @@
     font-size: 1.7em;
     padding-left: 1rem;
     border-color: $primary-color;
+    font-family: "Montserrat", sans-serif;
 
     &:first-of-type {
       padding: 1rem !important;
@@ -23,6 +24,9 @@
     font-size: 1.3em;
     border-color: $primary-color;
     background-color: $light-orange;
+    color: $grey-color;
+    font-weight: 500;
+    font-family: "Montserrat", sans-serif !important;
   }
 }
 
@@ -32,64 +36,59 @@ table {
 }
 
 section {
-    height: 44rem;
-    padding: 4rem;
-    height: 100%;
+  height: 44rem;
+  padding: 4rem;
+  height: 100%;
 
-    h1 {
-        font-size: 3em;
-        margin: 3rem 0.5rem;
-        color: $primary-color;
+  h1 {
+    font-size: 3em;
+    margin: 3rem 0.5rem;
+    color: $primary-color;
+  }
+
+  .profile-section {
+    display: flex;
+    font-size: 1.5em;
+    flex-direction:column;
+    background-color: wheat;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    flex-direction: column;
+  }
+
+  .item-atribute{
+    display: flex;
+    padding: 0.5rem 2rem;
+    justify-content: left;
+    font-size: 1.3em;
+    color: $grey-color;
+    user-select:none;
+    width: 100%;
+
+    .atribute-title {
+      margin-right: 2rem;
     }
+  }
 
-    .profile-section {
-        display: flex;
-        font-size: 1.5em;
-        padding-left: 2rem;
-        flex-direction:column;
-    }
-
-    .item-atribute{
-        display: flex;
-        padding: 0.5rem 2rem;
-        justify-content: left;
-        font-size: 1.5em;
-        color: $grey-color;
-        user-select:none;
-        width: 100%;
-
-        .atribute-title {
-            margin-right: 2rem;
-        }
-    }
-
-    .button-section{
-        display: flex;
-        justify-content:center;
-        margin-top: 3rem;
-            
-        .action-btn{
-            display: flex;
-            justify-content: center;
-            font-size: 1.5em;
-            color: $white-color;
-            background-color: $primary-color;
-            padding: 1rem;
-            border-radius: 0.2rem;
-            width: 30rem;
-            user-select:none;
-            align-items: center;
-            margin: 0 3rem 3rem     0;
-          
-            &:hover {
-              background-color: $dark-primary-color;
-              transition: all 0.5s;
-            }
-            &:active{
-              box-shadow: 0 0.063rem 0.5rem $light-black-color;
-              transition: all 0s;
-            }
-        }
-    }
+  .button-section{
+    display: flex;
+    justify-content:center;
+    margin-top: 3rem;
+  }
 }
 
+.btn {
+  padding: 1.3rem;
+  font-size: 1.7em;
+  background-color: $primary-color;
+  border-radius: 3rem;
+  color: $white-color;
+  min-width: 22rem;
+  margin: 0 2rem;
+  text-align: center;
+}
+
+.photo{
+  max-width: 10rem;
+  max-height: 10rem;
+}

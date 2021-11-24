@@ -14,30 +14,46 @@
 
         <div class="item-atribute">
           <p>Nombre:</p>
-          <input id="nombre" class="input input-user" type="text" formControlName="nombre">
+          <input id="nombre" class="input input-user" type="text" formControlName="nombre"
+            [class.invalid-input]="editUserForm.get('nombre').errors?.required && submitted">
+          <p [class.hide]="!(editUserForm.get('nombre').errors?.required && submitted)" class="error-msg">
+            El nombre no puede ser vacío
+          </p>
         </div>
 
         <div class="item-atribute">
           <p>Dirección:</p>
-          <input id="direccion" class="input input-user" type="text" formControlName="direccion">
+          <input id="direccion" class="input input-user" type="text" formControlName="direccion"
+            [class.invalid-input]="editUserForm.get('direccion').errors?.required && submitted">
+          <p [class.hide]="!(editUserForm.get('direccion').errors?.required && submitted)" class="error-msg">
+            La dirección no puede ser vacía
+          </p>
         </div>
 
         <div class="item-atribute">
           <p>Teléfono:</p>
-          <input id="telefono" class="input input-user" type="text" formControlName="telefono">
+          <input id="telefono" class="input input-user" type="text" formControlName="telefono"
+            [class.invalid-input]="editUserForm.get('telefono').errors?.required && submitted">
+          <p [class.hide]="!(editUserForm.get('telefono').errors?.required && submitted)" class="error-msg">
+            El teléfono no puede ser vacío
+          </p>
         </div>
 
         <div class="item-atribute">
           <p>Correo:</p>
-          <input id="correo" class="input input-user" type="text" formControlName="correo">
+          <input id="correo" class="input input-user" type="text" formControlName="correo"
+            [class.invalid-input]="editUserForm.get('correo').errors?.required && submitted">
+          <p [class.hide]="!(editUserForm.get('correo').errors?.required && submitted)" class="error-msg">
+            El correo no puede ser vacío
+          </p>
         </div>
 
       </div>
       <div class="button-row">
-        <button type="button" class="button-modal-submit action-btn-cancel" (click)="close()">
+        <button type="button" class="btn-cancel" (click)="close()">
           Cancelar
         </button>
-        <button type="submit" class="button-modal-submit action-btn-save">
+        <button type="submit" class="btn" [disabled]="editUserForm.invalid && submitted">
           Guardar
         </button>
       </div>
