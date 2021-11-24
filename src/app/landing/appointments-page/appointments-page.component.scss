@@ -10,6 +10,7 @@
     font-size: 1.7em;
     padding-left: 1rem;
     border-color: $primary-color;
+    font-family: "Montserrat", sans-serif;
 
     &:first-of-type {
       padding: 1rem !important;
@@ -23,6 +24,8 @@
     font-size: 1.5em;
     border-color: $primary-color;
     background-color: $light-orange;
+    color: $grey-color;
+    font-family: "Montserrat", sans-serif;
   }
 
   td {
@@ -44,4 +47,12 @@ section {
     margin: 3rem 0.5rem;
     color: $primary-color;
   }
+}
+
+input {
+  height: 3rem;
+  border-bottom: 0.1rem solid $primary-color;
+  font-size: 1.4em;
+  width: 30rem;
+  margin-bottom: 2rem;
 }
