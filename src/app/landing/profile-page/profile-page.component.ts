@@ -9,6 +9,7 @@ import { UserEditModalComponent } from '../modals/edit-user-modal/edit-user-moda
 import { ClientService } from 'src/app/services/client.service';
 import { MessageService } from 'src/app/message-handler/message.service';
 import { MascotaUtil } from './mascota.util';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile-page',
@@ -29,16 +30,17 @@ export class ProfilePageComponent implements AfterViewInit {
   constructor(
     private clientService: ClientService,
     public dialog: MatDialog,
-    private formBuilder: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private domSanitizer: DomSanitizer
   ) {
   }
 
   async ngOnInit() {
     try {
       this.client = await this.clientService.getClient();
+      //this.sourceData.data = this.client.Mascotas;
       this.sourceData.data = this.client.Mascotas.map(mascota=>{
-        return{...mascota, foto: this.getFoto(mascota.CarnetInscripcion.Foto)};
+        return{...mascota, Foto: this.getFoto(mascota.CarnetInscripcion.Foto)};
       });
     }
     catch (error) {
@@ -84,16 +86,7 @@ export class ProfilePageComponent implements AfterViewInit {
   }
 
   getFoto(foto: any){
-    
-    var binary = '';
-    var bytes = new Uint8Array( foto );
-    console.log(bytes);
-    var len = bytes.byteLength;
-    
-    for (var i = 0; i < len; i++) {
-      binary += String.fromCharCode( bytes[ i ] );
-    }
-    return window.btoa( binary );
+    return this.domSanitizer.bypassSecurityTrustUrl(foto);
   }
 
   getRaza(raza: number) {
